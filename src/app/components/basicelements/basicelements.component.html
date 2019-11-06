@@ -1,0 +1,107 @@
+<div class="section section-buttons">
+    <div class="container">
+        <div class="tim-title">
+            <h2 style="margin-bottom: 10px;">Coches más sostenibles</h2>
+            <!--<select class='select-option'-->
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">
+                    <p>Motor</p>
+                    <select class='dropdown-item'
+                        #mySelect
+                        (change)='onOptionsSelected(mySelect.value)'>
+                        <option class='option' 
+                        *ngFor='let option of dropDownData' 
+                        [value]="option">{{option}}</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <p>Etiqueta</p>
+                    <select class='dropdown-item'
+                        #mySelectLabel
+                        (change)='onOptionsLabelSelected(mySelectLabel.value)'>
+                        <option class='option' 
+                        *ngFor='let label of dropDownDataLabel' 
+                        [value]="label">{{label}}</option>
+                    </select>
+                </div>
+            </div>
+            <ul>
+                <div *ngIf="!filter">
+                    <div *ngFor="let car of cars.cars; let i = index">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            <p></p>
+                            <p class="text-center">{{car.model}}</p>
+                            <img src="{{car.urlImg}}" class="img-thumbnail img-responsive" alt="Rounded Image">
+                            <ngb-progressbar type="success" [value]="25">25</ngb-progressbar><br>
+                            <ngb-progressbar type="info" [value]="50">Copying file <b>2 of 4</b>...</ngb-progressbar><br>
+                            <ngb-progressbar type="warning" [value]="75" [striped]="true" [animated]="true"><i>50%</i></ngb-progressbar><br>
+                            <ngb-progressbar type="danger" [value]="100" [striped]="true">Completed!</ngb-progressbar>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <p></p>
+                            <p> {{car.description}}</p>
+                            <a href="{{car.url}}" target="_blank" class="btn btn-success btn-round">+ información</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                                <p> Precio: {{car.price }} €</p>
+                                <p> WLPT (CO2 en pruebas): {{car.WLPT}} g/km</p>
+                                <p> Motor: {{car.engine}}</p>
+                                <div *ngIf="car.label0DGT">
+                                    <img src="../../assets/img/DGT-label0.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
+                                    <button type="button" class="btn btn-outline-primary btn-round" placement="bottom"
+                                        ngbPopover="El vehículo se encuentra bajo del 50% de los vehículos en rango de contaminación, lo cuál te supone de ventajas fiscales (descuentos en matriculación) y de conducción (sin restricciones para viajar dentro de ciudades a pesar de protocolos de contaminación)." popoverTitle="¿Qué es etiqueta 0?">
+                                        ¿Qué es 0?
+                                    </button>
+                                </div>
+                                <div *ngIf="car.labelDGTECO">
+                                    <img src="../../assets/img/labelECO-dgt.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
+                                    <button type="button" class="btn btn-outline-success btn-round" placement="bottom"
+                                            ngbPopover="Tienes ayudas generales, otras en Madrid y Barcelona." popoverTitle="¿Qué es ECO?">
+                                            ¿Qué es ECO?
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div *ngIf="filter">
+                        <div *ngFor="let car of selectedCars ; let i = index">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3">
+                                <p></p>
+                                <p class="text-center">{{car.model}}</p>
+                                <img src="{{car.urlImg}}" class="img-thumbnail img-responsive" alt="Rounded Image">
+                                <ngb-progressbar type="success" [value]="25">25</ngb-progressbar><br>
+                                <ngb-progressbar type="info" [value]="50">Copying file <b>2 of 4</b>...</ngb-progressbar><br>
+                                <ngb-progressbar type="warning" [value]="75" [striped]="true" [animated]="true"><i>50%</i></ngb-progressbar><br>
+                                <ngb-progressbar type="danger" [value]="100" [striped]="true">Completed!</ngb-progressbar>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <p></p>
+                                <p> {{car.description}}</p>
+                                <a href="{{car.url}}" target="_blank" class="btn btn-success btn-round">+ información</a>
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                    <p> Precio: {{car.price }}</p>
+                                    <p> WLPT (CO2 en pruebas): {{car.WLPT}} g/km</p>
+                                    <p> Motor: {{car.engine}}</p>
+                                    <div *ngIf="car.label0DGT">
+                                        <img src="../../assets/img/DGT-label0.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
+                                        <button type="button" class="btn btn-outline-primary btn-round" placement="bottom"
+                                            ngbPopover="El vehículo se encuentra bajo del 50% de los vehículos en rango de contaminación, lo cuál te supone de ventajas fiscales (descuentos en matriculación) y de conducción (sin restricciones para viajar dentro de ciudades a pesar de protocolos de contaminación)." popoverTitle="¿Qué es etiqueta 0?">
+                                            ¿Qué es 0?
+                                        </button>
+                                    </div>
+                                    <div *ngIf="car.labelDGTECO">
+                                        <img src="../../assets/img/labelECO-dgt.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
+                                        <button type="button" class="btn btn-outline-success btn-round" placement="bottom"
+                                            ngbPopover="Tienes ayudas generales, otras en Madrid y Barcelona." popoverTitle="¿Qué es ECO?">
+                                            ¿Qué es ECO?
+                                       </button>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
