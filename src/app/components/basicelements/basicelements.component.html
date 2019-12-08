@@ -47,6 +47,9 @@
                                 <p> Precio: {{car.price }} €</p>
                                 <p> WLPT (CO2 en pruebas): {{car.WLPT}} g/km</p>
                                 <p> Motor: {{car.engine}}</p>
+                                <div *ngIf="car.engine === 'ELECTRICO'">
+                                    <p> Autonomía Min: {{car.minAutonomy}}km Max: {{car.maxAutonomy}}km</p>
+                                </div>
                                 <div *ngIf="car.label0DGT">
                                     <img src="../../assets/img/DGT-label0.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
                                     <button type="button" class="btn btn-outline-primary btn-round" placement="bottom"
@@ -83,9 +86,12 @@
                                 <a href="{{car.url}}" target="_blank" class="btn btn-success btn-round">+ información</a>
                             </div>
                             <div class="col-xs-12 col-sm-3">
-                                    <p> Precio: {{car.price }}</p>
+                                    <p> Precio: {{car.price }} €</p>
                                     <p> WLPT (CO2 en pruebas): {{car.WLPT}} g/km</p>
                                     <p> Motor: {{car.engine}}</p>
+                                    <div *ngIf="car.engine === 'ELECTRICO'">
+                                        <p> Min autonomía: {{car.minAutonomy}} Max autonomía: {{car.maxAutonomy}}  </p>
+                                    </div>
                                     <div *ngIf="car.label0DGT">
                                         <img src="../../assets/img/DGT-label0.jpg" class="img-circle img-no-padding img-responsive" alt="Rounded Image">
                                         <button type="button" class="btn btn-outline-primary btn-round" placement="bottom"
